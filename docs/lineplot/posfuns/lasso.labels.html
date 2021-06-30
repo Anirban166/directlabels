@@ -21,31 +21,33 @@ Positioning Method - lasso.labels</h1>
 <pre>
 lasso.labels &lt;-
   list(rot=60,
-       <a href="../../utility.function/posfuns/gapply.fun.html">gapply.fun</a>({ ## figure out where the path hits 0
+       gapply.fun({ ## figure out where the path hits 0
          d &lt;- d[order(d$x),]
          zero &lt;- d$y[1]
          i &lt;- which(d$y!=zero)[1]
-         just &lt;- as.integer(d[i,"y"]&gt;zero)
-         transform(d[i-1,],hjust=just,vjust=just)
+         if(!is.na(i)){
+           just &lt;- as.integer(d[i,"y"]&gt;zero)
+           transform(d[i-1,],hjust=just,vjust=just)
+         }
        }),
-       "<a href="../../utility.function/posfuns/calc.boxes.html">calc.boxes</a>",
+       "calc.boxes",
        ## calculate how wide the tilted box is
-       <a href="../../utility.function/posfuns/dl.trans.html">dl.trans</a>(hyp=h/sin(2*pi*rot/360)),
-       <a href="../../utility.function/posfuns/dl.trans.html">dl.trans</a>(left=x-hyp/2,right=x+hyp/2),
+       dl.trans(hyp=h/sin(2*pi*rot/360)),
+       dl.trans(left=x-hyp/2,right=x+hyp/2),
        ## avoid collisions between tilted boxes
        function(d,...){
-         solver &lt;- <a href="../../utility.function/posfuns/qp.labels.html">qp.labels</a>("x","left","right")
+         solver &lt;- qp.labels("x","left","right")
          ## apply the solver independently for top and bottom labels.
-         solution &lt;- data.frame()
+         solution.list &lt;- list()
          for(vj in c(0,1)){
            these &lt;- d$vjust == vj
            if(any(these)){
              one.side &lt;- d[these,]
              solved &lt;- solver(one.side)
-             solution &lt;- rbind(solution,solved)
+             solution.list[[paste(vj)]] &lt;- solved
            }
          }
-         solution
+         do.call(rbind, solution.list)
        })
 </pre>
 
@@ -83,7 +85,7 @@ direct.label(p,"lasso.labels")
 <tr>
   <td><img alt="lars" src="../../lineplot/lars.lasso.labels.png" /></td>
   <td><p><a href="../plots/lars.html">lars</a></p><pre>
-data(prostate,package="ElemStatLearn")
+data(prostate)
 pros &lt;- subset(prostate,select=-train,train==TRUE)
 ycol &lt;- which(names(pros)=="lpsa")
 x &lt;- as.matrix(pros[-ycol])
@@ -137,7 +139,7 @@ myridge &lt;- function(f,data,lambda=c(exp(-seq(-15,15,l=200)),0)){
   limpts &lt;- transform(subset(molt,lambda==0),lambda=Inf,df=0,value=0)
   rbind(limpts,molt)
 }
-data(prostate,package="ElemStatLearn")
+data(prostate)
 pros &lt;- subset(prostate,train==TRUE,select=-train)
 m &lt;- myridge(lpsa~.,pros)
 library(lattice)
@@ -180,7 +182,7 @@ or have ideas to contribute, thanks!</td>
 </tr>
 <tr><td align="center">Documentation website generated from source
 code version 2021.2.24
-(git revision bb6db07 Mon, 14 Jun 2021 22:38:45 +0530)
+(git revision edd0c5b Mon, 28 Jun 2021 10:54:29 +0530)
 using <a href="https://github.com/tdhock/inlinedocs">inlinedocs</a>.</td>
 </tr>
 <tr>

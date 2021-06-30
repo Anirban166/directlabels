@@ -21,7 +21,7 @@ the plot border and any other curve.</p>
 
 <pre>
 angled.boxes &lt;-
-  list("<a href="../../utility.function/posfuns/far.from.others.borders.html">far.from.others.borders</a>","<a href="../../utility.function/posfuns/calc.boxes.html">calc.boxes</a>","<a href="../../utility.function/posfuns/enlarge.box.html">enlarge.box</a>","<a href="../../utility.function/posfuns/draw.rects.html">draw.rects</a>")
+  list("far.from.others.borders","calc.boxes","enlarge.box","draw.rects")
 </pre>
 
 <table>
@@ -58,7 +58,7 @@ direct.label(p,"angled.boxes")
 <tr>
   <td><img alt="lars" src="../../lineplot/lars.angled.boxes.png" /></td>
   <td><p><a href="../plots/lars.html">lars</a></p><pre>
-data(prostate,package="ElemStatLearn")
+data(prostate)
 pros &lt;- subset(prostate,select=-train,train==TRUE)
 ycol &lt;- which(names(pros)=="lpsa")
 x &lt;- as.matrix(pros[-ycol])
@@ -112,7 +112,7 @@ myridge &lt;- function(f,data,lambda=c(exp(-seq(-15,15,l=200)),0)){
   limpts &lt;- transform(subset(molt,lambda==0),lambda=Inf,df=0,value=0)
   rbind(limpts,molt)
 }
-data(prostate,package="ElemStatLearn")
+data(prostate)
 pros &lt;- subset(prostate,train==TRUE,select=-train)
 m &lt;- myridge(lpsa~.,pros)
 library(lattice)
@@ -155,7 +155,7 @@ or have ideas to contribute, thanks!</td>
 </tr>
 <tr><td align="center">Documentation website generated from source
 code version 2021.2.24
-(git revision bb6db07 Mon, 14 Jun 2021 22:38:45 +0530)
+(git revision edd0c5b Mon, 28 Jun 2021 10:54:29 +0530)
 using <a href="https://github.com/tdhock/inlinedocs">inlinedocs</a>.</td>
 </tr>
 <tr>

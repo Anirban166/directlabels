@@ -71,6 +71,7 @@ loci <- data.frame(ppp=c(rbeta(800,10,10),rbeta(100,0.15,1),rbeta(100,1,0.15)),
 library(ggplot2)
 p <- qplot(ppp,data=loci,colour=type,geom="density")
 })){
+  print(direct.label(p,"bottom.points"))
   print(direct.label(p,"top.bumptwice"))
   print(direct.label(p,"top.bumpup"))
   print(direct.label(p,"top.points"))
@@ -112,7 +113,7 @@ p <- qqmath(~gcsescore,Chem97,groups=gender,
        type=c("l","g"),f.value=ppoints(100))
 },
 {
-data(prostate,package="ElemStatLearn")
+data(prostate)
 pros <- subset(prostate,select=-train,train==TRUE)
 ycol <- which(names(pros)=="lpsa")
 x <- as.matrix(pros[-ycol])
@@ -158,7 +159,7 @@ myridge <- function(f,data,lambda=c(exp(-seq(-15,15,l=200)),0)){
   limpts <- transform(subset(molt,lambda==0),lambda=Inf,df=0,value=0)
   rbind(limpts,molt)
 }
-data(prostate,package="ElemStatLearn")
+data(prostate)
 pros <- subset(prostate,train==TRUE,select=-train)
 m <- myridge(lpsa~.,pros)
 library(lattice)
@@ -184,6 +185,7 @@ p <- qplot(Time,deaths,data=uk.lung,colour=sex,geom="line")+
   xlim(ISOdate(1973,9,1),ISOdate(1980,4,1))
 })){
   print(direct.label(p,"angled.boxes"))
+  print(direct.label(p,"bottom.polygons"))
   print(direct.label(p,"first.bumpup"))
   print(direct.label(p,"first.points"))
   print(direct.label(p,"first.polygons"))
@@ -193,9 +195,14 @@ p <- qplot(Time,deaths,data=uk.lung,colour=sex,geom="line")+
   print(direct.label(p,"last.points"))
   print(direct.label(p,"last.polygons"))
   print(direct.label(p,"last.qp"))
+  print(direct.label(p,"left.points"))
+  print(direct.label(p,"left.polygons"))
   print(direct.label(p,"lines2"))
   print(direct.label(p,"maxvar.points"))
   print(direct.label(p,"maxvar.qp"))
+  print(direct.label(p,"right.points"))
+  print(direct.label(p,"right.polygons"))
+  print(direct.label(p,"top.polygons"))
 }
 
 ### scatterplot Positioning Methods
@@ -221,16 +228,16 @@ library(lattice)
 p <- xyplot(jitter(Sepal.Length)~jitter(Petal.Length),iris,groups=Species)
 },
 {
-data(mpg,package="ggplot2")
-library(lattice)
-p <- xyplot(jitter(cty)~jitter(hwy),mpg,groups=class,
-       main="Fuel efficiency depends on car size")
-},
-{
 library(ggplot2)
 data(mpg,package="ggplot2")
 p <- qplot(jitter(hwy),jitter(cty),data=mpg,colour=class,
       main="Fuel efficiency depends on car size")
+},
+{
+data(mpg,package="ggplot2")
+library(lattice)
+p <- xyplot(jitter(cty)~jitter(hwy),mpg,groups=class,
+       main="Fuel efficiency depends on car size")
 },
 {
 data(normal.l2.cluster,package="directlabels")

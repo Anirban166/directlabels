@@ -34,7 +34,7 @@ myridge &lt;- function(f,data,lambda=c(exp(-seq(-15,15,l=200)),0)){
   limpts &lt;- transform(subset(molt,lambda==0),lambda=Inf,df=0,value=0)
   rbind(limpts,molt)
 }
-data(prostate,package="ElemStatLearn")
+data(prostate)
 pros &lt;- subset(prostate,train==TRUE,select=-train)
 m &lt;- myridge(lpsa~.,pros)
 library(lattice)
@@ -58,6 +58,13 @@ p &lt;- xyplot(value~df,m,groups=variable,type="o",pch="+",
 the plot border and any other curve.</p>
     <pre>
 direct.label(p,"<a href="../posfuns/angled.boxes.html">angled.boxes</a>")
+  </pre></td>
+</tr>
+<tr>
+  <td><img alt="bottom.polygons" src="../../lineplot/ridge.bottom.polygons.png" /></td>
+  <td><p>Draw a speech polygon to the bottom point.</p>
+    <pre>
+direct.label(p,"<a href="../posfuns/bottom.polygons.html">bottom.polygons</a>")
   </pre></td>
 </tr>
 <tr>
@@ -124,6 +131,20 @@ direct.label(p,"<a href="../posfuns/last.qp.html">last.qp</a>")
   </pre></td>
 </tr>
 <tr>
+  <td><img alt="left.points" src="../../lineplot/ridge.left.points.png" /></td>
+  <td><p>Positioning Method for the first of a group of points.</p>
+    <pre>
+direct.label(p,"<a href="../posfuns/left.points.html">left.points</a>")
+  </pre></td>
+</tr>
+<tr>
+  <td><img alt="left.polygons" src="../../lineplot/ridge.left.polygons.png" /></td>
+  <td><p>Draw a speech polygon to the first point.</p>
+    <pre>
+direct.label(p,"<a href="../posfuns/left.polygons.html">left.polygons</a>")
+  </pre></td>
+</tr>
+<tr>
   <td><img alt="lines2" src="../../lineplot/ridge.lines2.png" /></td>
   <td><p>Positioning Method for 2 groups of longitudinal data. One curve
 is on top of the other one (on average), so we label the top one
@@ -151,6 +172,27 @@ a QP solver to make sure the labels do not collide.</p>
 direct.label(p,"<a href="../posfuns/maxvar.qp.html">maxvar.qp</a>")
   </pre></td>
 </tr>
+<tr>
+  <td><img alt="right.points" src="../../lineplot/ridge.right.points.png" /></td>
+  <td><p>Positioning Method for the last of a group of points.</p>
+    <pre>
+direct.label(p,"<a href="../posfuns/right.points.html">right.points</a>")
+  </pre></td>
+</tr>
+<tr>
+  <td><img alt="right.polygons" src="../../lineplot/ridge.right.polygons.png" /></td>
+  <td><p>Draw a speech polygon to the last point.</p>
+    <pre>
+direct.label(p,"<a href="../posfuns/right.polygons.html">right.polygons</a>")
+  </pre></td>
+</tr>
+<tr>
+  <td><img alt="top.polygons" src="../../lineplot/ridge.top.polygons.png" /></td>
+  <td><p>Draw a speech polygon to the top point.</p>
+    <pre>
+direct.label(p,"<a href="../posfuns/top.polygons.html">top.polygons</a>")
+  </pre></td>
+</tr>
 </table>
 
 <center>
@@ -163,7 +205,7 @@ or have ideas to contribute, thanks!</td>
 </tr>
 <tr><td align="center">Documentation website generated from source
 code version 2021.2.24
-(git revision bb6db07 Mon, 14 Jun 2021 22:38:45 +0530)
+(git revision edd0c5b Mon, 28 Jun 2021 10:54:29 +0530)
 using <a href="https://github.com/tdhock/inlinedocs">inlinedocs</a>.</td>
 </tr>
 <tr>
